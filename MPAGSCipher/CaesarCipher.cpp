@@ -58,3 +58,13 @@ std::string Caesar::applyCipher(  const std::string& inputText, const CipherMode
   return outputText;
 
 }
+
+void Caesar::printAlphabet()
+{
+	for( char i : alphabet_ )
+	{
+		std::cout << i;
+	}
+	std::cout << std::endl;
+}
+

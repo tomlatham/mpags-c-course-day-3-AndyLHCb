@@ -14,21 +14,18 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 # - Don't allow C++ Compiler Vendor Extensions
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+enable_testing()
+add_subdirectory(Testing)
+
 # - Use our standard set of flags
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror -Wfatal-errors -Wshadow -pedantic")
+
+# - Adding MPAGSCipher as a subdirectory
+add_subdirectory(MPAGSCipher)
 
 # - Declare the build of mpags-cipher main program
 add_executable(mpags-cipher
   mpags-cipher.cpp
-  MPAGSCipher/TransformChar.hpp
-  MPAGSCipher/TransformChar.cpp
-  MPAGSCipher/ProcessCommandLine.cpp
-  MPAGSCipher/ProcessCommandLine.hpp
-  MPAGSCipher/RunCaesarCipher.cpp
-  MPAGSCipher/RunCaesarCipher.hpp
-  MPAGSCipher/CaesarCipher.hpp
-  MPAGSCipher/CaesarCipher.cpp
-  MPAGSCipher/CipherMode.hpp
   )
 
 target_include_directories(mpags-cipher
@@ -38,3 +35,7 @@ target_include_directories(mpags-cipher
 target_compile_features(mpags-cipher
   PRIVATE cxx_auto_type cxx_range_for cxx_uniform_initialization
   )
+
+target_link_libraries(
+	mpags-cipher PRIVATE MPAGSCipher
+	)

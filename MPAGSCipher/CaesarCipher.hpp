@@ -28,7 +28,13 @@ class Caesar{
 
 		///setters & getters
 
-		//void printAlphabet(); <- do later
+		void printAlphabet();
+
+		//Overload == operator
+		inline bool operator==(const Caesar& rhs )
+		{
+			return this->key_ == rhs.key_;
+		}
 
 		///Member functions
 
