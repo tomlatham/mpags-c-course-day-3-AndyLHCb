@@ -13,7 +13,11 @@ TEST_CASE("CorrectProcessing","[alphanumeric]")
 	ProgramSettings settings{false,false,"","","",CipherMode::encrypt};
 
 	REQUIRE( processCommandLine(args, settings)) ;
-	
+
+	args[7] = "--decrypt";
+
+	REQUIRE ( processCommandLine(args, settings) );
+
 	args.push_back("--help");
 
 	REQUIRE( processCommandLine(args, settings) );

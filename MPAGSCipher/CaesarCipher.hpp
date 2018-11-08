@@ -33,7 +33,9 @@ class Caesar{
 		//Overload == operator
 		inline bool operator==(const Caesar& rhs )
 		{
-			return this->key_ == rhs.key_;
+			bool keyEquiv{ this->key_ == rhs.key_ };
+			bool alphEquiv{ this->alphabet_ == rhs.alphabet_  };
+			return keyEquiv and alphEquiv;
 		}
 
 		///Member functions
