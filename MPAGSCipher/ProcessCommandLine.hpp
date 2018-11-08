@@ -7,7 +7,7 @@
 
 struct ProgramSettings{
 	bool helpRequested;
-	bool VersionRequested; 
+	bool versionRequested; 
 	std::string inputFile;
 	std::string outputFile;
 	std::string cipher_key;

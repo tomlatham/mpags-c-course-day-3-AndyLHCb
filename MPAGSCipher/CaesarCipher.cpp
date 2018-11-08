@@ -1,31 +1,31 @@
 #include "CaesarCipher.hpp"
 
-Caesar::Caesar(const size_t& key): key_{key}
+Caesar::Caesar(const size_t& key): key_{key % alphabetSize_}
 {
 }
 
-Caesar::Caesar(const std::string& key)
+Caesar::Caesar(const std::string& key) : key_{0}
 {
+    if ( key.empty() ) {
+	return;
+    }
+
     for ( const auto& elem : key ) {
 	if ( ! std::isdigit(elem) ) {
 	    std::cerr 
 		<<"[error] cipher key must be an unsigned long integer for Caesar cipher,\n"
 		<< "       the supplied key (" << key << ") could not be successfully converted \n "
-		<< "       a default value of 1 was taken." << std::endl;
-	    key_ = 1;
+		<< "       a default value of 0 was taken." << std::endl;
 	    return;
 	}	
     }
-    key_ =  key.empty() ? 0 : std::stoul(key);
+    key_ =  std::stoul(key) % alphabetSize_;
 }
 
-std::string Caesar::applyCipher(  const std::string& inputText, const CipherMode encrypt )
+std::string Caesar::applyCipher(  const std::string& inputText, const CipherMode encrypt ) const
 {
   // Create the output string
   std::string outputText {};
-
-  // Make sure that the key is in the range 0 - 25
-  const size_t truncatedKey { key_ % alphabetSize_ };
 
   // Loop over the input text
   char processedChar {'x'};
@@ -41,11 +41,11 @@ std::string Caesar::applyCipher(  const std::string& inputText, const CipherMode
 			  // or decrypting) and determine the new character
 			  // Can then break out of the loop over the alphabet
 			  switch ( encrypt ) {
-				  case CipherMode::encrypt:
-					  processedChar = alphabet_[ (i + truncatedKey) % alphabetSize_ ];
+				  case CipherMode::Encrypt:
+					  processedChar = alphabet_[ (i + key_) % alphabetSize_ ];
 					  break;
-				  case CipherMode::decrypt:
-					  processedChar = alphabet_[ (i + alphabetSize_ - truncatedKey) % alphabetSize_ ];
+				  case CipherMode::Decrypt:
+					  processedChar = alphabet_[ (i + alphabetSize_ - key_) % alphabetSize_ ];
 					  break;
 			  }
 

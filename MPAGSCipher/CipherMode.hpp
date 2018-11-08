@@ -2,8 +2,8 @@
 #define CIPHER_MODE
 
 enum class CipherMode{
-	encrypt,
-	decrypt
+	Encrypt,
+	Decrypt
 };
 
 #endif

@@ -1,5 +1,5 @@
 #ifndef CAESAR_CLASS
-#define CASEAR_CLASS
+#define CAESAR_CLASS
 
 #include <vector>
 #include <string>
@@ -12,13 +12,12 @@
  */
 class Caesar{
 	private:
-		///Key to be used
-		size_t key_{1};
 		///alphabet to be used (by default the one used in english and currently unchangable)
 		const std::vector<char> alphabet_ = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 		///alphabet size for use in some of the maths implimentation
 		const size_t alphabetSize_ = alphabet_.size();
-
+		///Key to be used
+		size_t key_{0};
 
 
 	public:
@@ -41,7 +40,7 @@ class Caesar{
 		///Member functions
 
 		///Applys the cipher to a string given a direction to encrypt/decrypt
-		std::string applyCipher( const std::string& inputText, const CipherMode encrypt );
+		std::string applyCipher( const std::string& inputText, const CipherMode encrypt ) const;
 };
 
 

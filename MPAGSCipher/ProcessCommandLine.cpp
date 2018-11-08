@@ -25,7 +25,7 @@ bool processCommandLine(std::vector<std::string> args,
     }
     else if (args[i] == "--version") {
       // Set the indicator and terminate the loop
-      settings.VersionRequested = true;
+      settings.versionRequested = true;
       break;
     }
     else if (args[i] == "-i") {
@@ -74,10 +74,10 @@ bool processCommandLine(std::vector<std::string> args,
       }
     }
     else if ( args[i] == "--encrypt" ) {
-            settings.encrypt = CipherMode::encrypt;
+            settings.encrypt = CipherMode::Encrypt;
     }
     else if ( args[i] == "--decrypt" ) {
-            settings.encrypt = CipherMode::decrypt;
+            settings.encrypt = CipherMode::Decrypt;
     }
     else {
       // Have encoutered an unknown flag, output an error message, set the flag
